@@ -1,5 +1,5 @@
 #include "States/SettingsState.h"
-#include"Buttons/Gui.h"
+
 
 void SettingsState::initVariables()
 {
