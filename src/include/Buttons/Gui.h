@@ -48,6 +48,7 @@ namespace gui {
 		const bool isPressed() const;
 		const std::string getText() const;
 		const short unsigned& getId() const;
+		
 
 		//Modifiers
 		void setText(const std::string text);
@@ -78,6 +79,8 @@ namespace gui {
 
 		//Setters & Getters
 		const bool getKeytime();
+		const short unsigned& getActiveElementId() const;
+
 		void updateKeytime(const float& dt);
 
 		//functions

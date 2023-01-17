@@ -9,14 +9,18 @@
 #include<sstream>
 #include<fstream>
 
-class Tile
+#include"Tile/Tile.h"
+
+class TileMap
 {
 private:
+	std::vector < std::vector < std::vector < Tile > > > map;
+	sf::Vector2u maxSize;
 
-protected:
-
+	unsigned gridSizeU;
+	unsigned layers;
 public:
-	Tile();
-	virtual ~Tile();
+	TileMap();
+	virtual ~TileMap();
 };
 

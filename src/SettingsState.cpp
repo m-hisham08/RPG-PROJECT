@@ -53,24 +53,29 @@ void SettingsState::initGui()
 {
 	//Buttons
 	this->buttonContainer["BACK"] = new gui::Button(
-		300.f, 600.f,
+		800.f, 595.f,
 		250.f, 50.f,
 		&this->font, "Back", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttonContainer["APPLY"] = new gui::Button(
-		300.f, 700.f,
+		1000.f, 600.f,
 		250.f, 50.f,
 		&this->font, "Apply", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 
-	std::string li[] = { "1920x1060", "800x600" , "640x480" };
+	std::vector<std::string> modes_str;
+
+	for (auto& i : this->modes) {
+		modes_str.push_back(std::to_string(i.width) + "x" + std::to_string(i.height));
+	}
+
 	//Drop down lists
 	this->dropDownLists["RESOLUTION"] = new gui::DropDownList(
-		300.f, 800.f, 250.f, 50.f, font, li, 3
+		400.f, 300.f, 250.f, 50.f, font, modes_str.data(), modes_str.size()
 	);
 }
 
@@ -78,8 +83,8 @@ void SettingsState::initText()
 {
 	//Text init
 	this->optionsText.setFont(this->font);
-	this->optionsText.setPosition(sf::Vector2f(100.f, 100.f));
-	this->optionsText.setCharacterSize(30);
+	this->optionsText.setPosition(sf::Vector2f(100.f, 300.f));
+	this->optionsText.setCharacterSize(35);
 	this->optionsText.setFillColor(sf::Color(255, 255, 255, 200));
 
 	this->optionsText.setString(
@@ -141,7 +146,7 @@ void SettingsState::updateGui(const float& dt)
 	//Apply selected settings
 	if (this->buttonContainer["APPLY"]->isPressed())
 	{
-	
+		this->window->create(this->modes[this->dropDownLists["RESOLUTION"]->getActiveElementId()], "test", sf::Style::Default);
 	}
 
 	//Dropdown lists

@@ -64,6 +64,7 @@ const short unsigned& gui::Button::getId() const
 	return this->id;
 }
 
+
 void gui::Button::setText(const std::string text)
 {
 	this->text.setString(text);
@@ -172,6 +173,11 @@ const bool gui::DropDownList::getKeytime()
 	}
 
 	return false;
+}
+
+const short unsigned& gui::DropDownList::getActiveElementId() const
+{
+	return this->activeElement->getId();
 }
 
 void gui::DropDownList::updateKeytime(const float& dt)
