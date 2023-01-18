@@ -1,4 +1,7 @@
+#include"stdafx.h"
+
 #include "States/MainMenuState.h"
+
 
 
 MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)

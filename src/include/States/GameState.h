@@ -1,15 +1,8 @@
 #pragma once
-#include<SFML\Window.hpp>
-#include<SFML\Graphics.hpp>
-
-#include<iostream>
-#include<fstream>
-
-#include"State.h"
+#include"States/State.h"
 #include"Entities/Entity.h"
 #include"Entities/Player.h"
 #include"GUI/PauseMenu.h"
-
 
 class GameState :
 	public State {

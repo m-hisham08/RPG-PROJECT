@@ -1,11 +1,7 @@
 #pragma once
-#include<fstream>
-#include<sstream>
-#include<vector>
 
-#include "State.h"
+#include "States/State.h"
 #include"Buttons/Gui.h"
-
 
 class SettingsState :
     public State

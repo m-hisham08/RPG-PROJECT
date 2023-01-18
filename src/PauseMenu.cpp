@@ -1,4 +1,7 @@
+#include"stdafx.h"
+
 #include "GUI/PauseMenu.h"
+
 
 PauseMenu::PauseMenu(sf::RenderWindow& window, sf::Font& font)
 	: font(font)

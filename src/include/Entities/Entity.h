@@ -1,7 +1,4 @@
 #pragma once
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
-
 #include"MovementComponent/MovementComponent.h"
 #include"AnimationComponent/AnimationComponent.h"
 #include"HitboxComponent/HitboxComponent.h"

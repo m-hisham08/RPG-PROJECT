@@ -1,11 +1,5 @@
 #pragma once
-#include<map>
-#include<string>
-
 #include"Buttons/Gui.h"
-
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp>
 
 class PauseMenu
 {

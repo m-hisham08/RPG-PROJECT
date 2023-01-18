@@ -1,4 +1,7 @@
+#include"stdafx.h"
+
 #include "Entities/Entity.h"
+
 
 void Entity::initVariables()
 {

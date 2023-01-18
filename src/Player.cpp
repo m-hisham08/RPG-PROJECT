@@ -1,4 +1,7 @@
+#include"stdafx.h"
+
 #include "Entities/Player.h"
+
 
 void Player::initComponents()
 {

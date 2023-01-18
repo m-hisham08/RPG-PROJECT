@@ -1,19 +1,7 @@
 #pragma once
-#include<stack>
-#include<iostream>
-#include<fstream>
-#include<map>
-#include<vector>
-
-#include<SFML\Window.hpp>
-#include<SFML\Graphics.hpp>
-
 #include"States\State.h"
 #include"States\GameState.h"
 #include<States\MainMenuState.h>
-
-
-
 
 class Game
 {

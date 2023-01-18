@@ -1,10 +1,4 @@
 #pragma once
-#include<map>
-#include<iostream>
-#include<string>
-
-#include<SFML/Graphics.hpp>
-#include<SFML/Window.hpp> 
 
 class AnimationComponent
 {

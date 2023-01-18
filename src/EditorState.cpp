@@ -1,4 +1,6 @@
+#include"stdafx.h"
 #include "States/EditorState.h"
+
 
 EditorState::EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
 	: State(window, supportedKeys, statesContainer)

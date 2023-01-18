@@ -2,8 +2,6 @@
 #include "States/State.h"
 #include "Buttons/Gui.h"
 
-#include<fstream>
-
 class EditorState :
     public State
 {

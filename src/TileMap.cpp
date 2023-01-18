@@ -1,4 +1,7 @@
-#include "Map/TileMap.h"
+#include"stdafx.h"
+
+#include"Map/TileMap.h"
+
 
 TileMap::TileMap()
 {

@@ -1,14 +1,9 @@
 #pragma once
-#include "State.h"
+#include "States/State.h"
 #include"Buttons/Gui.h"
 #include"States/GameState.h"
 #include"States/EditorState.h"
 #include"States/SettingsState.h"
-
-#include<fstream>
-#include<iostream>
-#include<sstream>
-#include<map>
 
 class MainMenuState :
     public State
