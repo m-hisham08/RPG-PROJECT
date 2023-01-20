@@ -7,10 +7,15 @@ private:
 	std::vector < std::vector < std::vector < Tile > > > map;
 	sf::Vector2u maxSize;
 
+
+	float gridSizeF;
 	unsigned gridSizeU;
 	unsigned layers;
 public:
 	TileMap();
 	virtual ~TileMap();
+
+	void update();
+	void render(sf::RenderTarget& target);
 };
 

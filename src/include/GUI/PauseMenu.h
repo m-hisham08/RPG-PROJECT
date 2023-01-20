@@ -1,5 +1,5 @@
 #pragma once
-#include"Buttons/Gui.h"
+#include"ResourceFiles/Gui.h"
 
 class PauseMenu
 {

@@ -2,6 +2,7 @@
 #include"States\State.h"
 #include"States\GameState.h"
 #include<States\MainMenuState.h>
+#include"ResourceFiles/GraphicsSettings.h"
 
 class Game
 {
@@ -10,9 +11,8 @@ private:
 	//private variables
 	sf::RenderWindow* window;
 	sf::Event ev;
-	std::vector<sf::VideoMode> videoModes;
-	sf::ContextSettings windowSettings;
-	bool fullscreen;
+
+	GraphicsSettings gfxSettings;
 
 	sf::Clock deltaClock;
 	float deltaTime;
@@ -22,6 +22,7 @@ private:
 
 	//initialisation functions
 	void initVariables();
+	void initGraphicsSettings();
 	void initWindow();
 	void initKeys();
 	void initStates();

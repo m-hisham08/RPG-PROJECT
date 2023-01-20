@@ -3,12 +3,15 @@
 #include"Entities/Entity.h"
 #include"Entities/Player.h"
 #include"GUI/PauseMenu.h"
+#include"Map/TileMap.h"
 
 class GameState :
 	public State {
 private:
 	Player* player;
 	PauseMenu* pmenu;
+
+	TileMap map;
 
 	sf::Font font;
 

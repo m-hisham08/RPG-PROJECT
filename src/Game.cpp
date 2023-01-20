@@ -6,6 +6,7 @@
 Game::Game()
 {
 	this->initVariables();
+	this->initGraphicsSettings();
 	this->initWindow();
 	this->initKeys();
 	this->initStates();
@@ -29,58 +30,42 @@ void Game::endApplication()
 void Game::initVariables()
 {
 	this->window = NULL;
-	this->fullscreen = false;
 	this->deltaTime = 0.f;
+}
+
+void Game::initGraphicsSettings()
+{
+	this->gfxSettings.loadFromFile("config/graphics.ini");
 }
 
 void Game::initWindow()
 {
-	//intialising a window by loading the arguments or parameters from a text file!
-	std::ifstream ifs;
-	ifs.open("config/windows.ini");
+	if (this->gfxSettings.fullscreen)
 
-	this->videoModes = sf::VideoMode::getFullscreenModes();
+		this->window = new sf::RenderWindow(
+			this->gfxSettings.resolution,
+			this->gfxSettings.title,
+			sf::Style::Fullscreen,
+			this->gfxSettings.contextSettings
+		);
 
-	std::string title = "None";
-	sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
-	bool full_screen = false;
-	int set_frame_rate_limit = 60;
-	bool vertical_sync_enabled = false;
-	unsigned antialiasing_level = 0;
-
-	if (ifs.is_open()) {
-		getline(ifs, title);
-		ifs >> window_bounds.width >> window_bounds.height;
-		ifs >> full_screen;
-		ifs >> set_frame_rate_limit;
-		ifs >> vertical_sync_enabled;
-		ifs >> antialiasing_level;
-	}
-	else {
-		std::cout << "ERROR: GAME.CPP::INITWINDOW() -> UNABLE TO LOAD FILE CONFIG/WINDOWS.INI " << "\n";
-	}
-
-	ifs.close();
-
-	this->fullscreen = full_screen;
-	windowSettings.antialiasingLevel = antialiasing_level;
-
-	if (this->fullscreen)
-		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Fullscreen, windowSettings);
 	else
-		this->window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, windowSettings);
+		this->window = new sf::RenderWindow(this->gfxSettings.resolution, this->gfxSettings.title, sf::Style::Titlebar | sf::Style::Close,
+			this->gfxSettings.contextSettings);
 
-	this->window->setFramerateLimit(set_frame_rate_limit);
-	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
+	this->window->setFramerateLimit(this->gfxSettings.frameRateLimit);
+	this->window->setVerticalSyncEnabled(this->gfxSettings.verticalSync);
 }
 
 void Game::initStates()
 {
-	this->statesContainer.push(new MainMenuState(this->window, &this->supportedKeys, &this->statesContainer));
+	this->statesContainer.push(new MainMenuState(this->window,this->gfxSettings, &this->supportedKeys, &this->statesContainer));
 }
 
 void Game::initKeys()
 {
+	//Creating a SFML window!
+
 	std::ifstream ifs;
 	ifs.open("config/game_supportedKeys.ini");
 

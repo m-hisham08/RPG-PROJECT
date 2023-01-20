@@ -1,7 +1,8 @@
 #pragma once
 
 #include "States/State.h"
-#include"Buttons/Gui.h"
+#include"ResourceFiles/Gui.h"
+#include"ResourceFiles/GraphicsSettings.h"
 
 class SettingsState :
     public State
@@ -14,6 +15,8 @@ private:
 
 	std::vector<sf::VideoMode> modes;
 
+	GraphicsSettings gfxSettings;
+
 	std::map<std::string, gui::Button*> buttonContainer;
 	std::map<std::string, gui::DropDownList*> dropDownLists;
 
@@ -25,7 +28,7 @@ private:
 	void initText();
 
 public:
-    SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+    SettingsState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
     virtual ~SettingsState();
 
     //accessors

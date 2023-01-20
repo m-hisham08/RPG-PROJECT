@@ -4,8 +4,8 @@
 
 
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
-	: State(window, supportedKeys, statesContainer)
+MainMenuState::MainMenuState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
+	: State(window, supportedKeys, statesContainer), gfxSettings(gfxSettings)
 {
 	this->initVariables();
 	this->initBackgrounds();
@@ -111,7 +111,7 @@ void MainMenuState::updateButtons()
 	}
 
 	if (this->buttonContainer["SETTINGS_STATE"]->isPressed()) {
-		this->statesContainer->push(new SettingsState(this->window, this->supportedKeys, this->statesContainer));
+		this->statesContainer->push(new SettingsState(this->window,this->gfxSettings, this->supportedKeys, this->statesContainer));
 	}
 
 	if (this->buttonContainer["EDITOR_STATE"]->isPressed()) {
