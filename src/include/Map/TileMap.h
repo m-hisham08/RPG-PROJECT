@@ -4,7 +4,7 @@
 class TileMap
 {
 private:
-	std::vector < std::vector < std::vector < Tile > > > map;
+	std::vector < std::vector < std::vector < Tile* > > > map;
 	sf::Vector2u maxSize;
 
 
