@@ -1,5 +1,25 @@
 #pragma once
 
+#include"Entities/Player.h"
+#include"ResourceFiles/GraphicsSettings.h"
+
+class Player;
+class GraphicsSettings;
+class State;
+
+class StateData {
+public:
+
+	StateData() {};
+
+	float gridSize;
+	sf::RenderWindow* window;
+	std::map<std::string, int>* supportedKeys;
+	GraphicsSettings* gfxSettings;
+	std::stack<State*>* statesContainer;
+
+};
+
 class State
 {
 private:
@@ -10,11 +30,15 @@ protected:
 	std::map<std::string, int> keybinds;
 	std::stack<State*>* statesContainer;
 
+	StateData* stateData;
+
 	bool quit;
 	bool paused;
 
 	float keytime;
 	float keytimeMax;
+
+	float gridSize;
 
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;
@@ -28,7 +52,7 @@ protected:
 
 public:
 	//Constructors and destructors
-	State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+	State(StateData* state_data);
 	virtual ~State();
 
 	//setters or getters

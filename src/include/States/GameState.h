@@ -11,7 +11,7 @@ private:
 	Player* player;
 	PauseMenu* pmenu;
 
-	TileMap map;
+	TileMap* tileMap;
 
 	sf::Font font;
 
@@ -20,9 +20,10 @@ private:
 	void initKeybinds();
 	void initPauseMenu();
 	void initPlayer();
+	void initTileMap();
 	
 public:
-	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+	GameState(StateData* state_data);
 	virtual ~GameState();
 
 	void updateInput(const float& dt);

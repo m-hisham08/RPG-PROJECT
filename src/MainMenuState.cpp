@@ -4,8 +4,8 @@
 
 
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
-	: State(window, supportedKeys, statesContainer), gfxSettings(gfxSettings)
+MainMenuState::MainMenuState(StateData* state_Data)
+	: State(state_Data)
 {
 	this->initVariables();
 	this->initBackgrounds();
@@ -107,15 +107,15 @@ void MainMenuState::updateButtons()
 	
 
 	if (this->buttonContainer["GAME_STATE"]->isPressed()) {
-		this->statesContainer->push(new GameState(this->window, this->supportedKeys, this->statesContainer));
+		this->statesContainer->push(new GameState(this->stateData));
 	}
 
 	if (this->buttonContainer["SETTINGS_STATE"]->isPressed()) {
-		this->statesContainer->push(new SettingsState(this->window,this->gfxSettings, this->supportedKeys, this->statesContainer));
+		this->statesContainer->push(new SettingsState(this->stateData));
 	}
 
 	if (this->buttonContainer["EDITOR_STATE"]->isPressed()) {
-		this->statesContainer->push(new EditorState(this->window, this->supportedKeys, this->statesContainer));
+		this->statesContainer->push(new EditorState(this->stateData));
 	}
 
 	if (this->buttonContainer["EXIT_STATE"]->isPressed()) {

@@ -14,8 +14,6 @@ private:
 	sf::RectangleShape background;
 	sf::Font font;
 
-	GraphicsSettings& gfxSettings;
-
 	std::map<std::string, gui::Button*> buttonContainer;
 
 	void initVariables();
@@ -25,7 +23,7 @@ private:
 	void initButtons();
 
 public:
-	MainMenuState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+	MainMenuState(StateData* state_Data);
 	virtual ~MainMenuState();
 
 

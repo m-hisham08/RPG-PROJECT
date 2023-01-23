@@ -12,8 +12,12 @@ private:
 	unsigned gridSizeU;
 	unsigned layers;
 public:
-	TileMap();
+
+	TileMap(float gridSize, unsigned width, unsigned height);
 	virtual ~TileMap();
+
+	void addTile();
+	void removeTile();
 
 	void update();
 	void render(sf::RenderTarget& target);

@@ -14,8 +14,12 @@ private:
 
 	GraphicsSettings gfxSettings;
 
+	StateData stateData;
+
 	sf::Clock deltaClock;
 	float deltaTime;
+
+	float gridSize;
 
 	std::stack<State*> statesContainer;
 	std::map<std::string, int> supportedKeys;
@@ -23,6 +27,7 @@ private:
 	//initialisation functions
 	void initVariables();
 	void initGraphicsSettings();
+	void initStateData();
 	void initWindow();
 	void initKeys();
 	void initStates();

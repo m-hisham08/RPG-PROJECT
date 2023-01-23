@@ -3,15 +3,19 @@
 #include "States\State.h"
 
 
-State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
+State::State(StateData* state_data)
 {
-    this->statesContainer = statesContainer;
-    this->window = window;
+    this->stateData = state_data;
+
+    this->statesContainer = state_data->statesContainer;
+    this->window = state_data->window;
+    this->supportedKeys = state_data->supportedKeys;
+    this->gridSize = state_data->gridSize;
+
     this->keytime = 0.f;
     this->keytimeMax = 10.f;
     this->quit = false;
     this->paused = false;
-    this->supportedKeys = supportedKeys;
 }
 
 State::~State()

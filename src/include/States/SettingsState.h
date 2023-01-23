@@ -15,7 +15,6 @@ private:
 
 	std::vector<sf::VideoMode> modes;
 
-	GraphicsSettings gfxSettings;
 
 	std::map<std::string, gui::Button*> buttonContainer;
 	std::map<std::string, gui::DropDownList*> dropDownLists;
@@ -28,7 +27,7 @@ private:
 	void initText();
 
 public:
-    SettingsState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+    SettingsState(StateData* state_data);
     virtual ~SettingsState();
 
     //accessors

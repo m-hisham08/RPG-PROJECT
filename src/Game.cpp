@@ -9,6 +9,7 @@ Game::Game()
 	this->initGraphicsSettings();
 	this->initWindow();
 	this->initKeys();
+	this->initStateData();
 	this->initStates();
 }
 
@@ -31,11 +32,21 @@ void Game::initVariables()
 {
 	this->window = NULL;
 	this->deltaTime = 0.f;
+	this->gridSize = 50.f;
 }
 
 void Game::initGraphicsSettings()
 {
 	this->gfxSettings.loadFromFile("config/graphics.ini");
+}
+
+void Game::initStateData()
+{
+	this->stateData.window = this->window;
+	this->stateData.supportedKeys = &this->supportedKeys;
+	this->stateData.gfxSettings = &this->gfxSettings;
+	this->stateData.statesContainer = &this->statesContainer;
+	this->stateData.gridSize = this->gridSize;
 }
 
 void Game::initWindow()
@@ -59,7 +70,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-	this->statesContainer.push(new MainMenuState(this->window,this->gfxSettings, &this->supportedKeys, &this->statesContainer));
+	this->statesContainer.push(new MainMenuState(&this->stateData));
 }
 
 void Game::initKeys()

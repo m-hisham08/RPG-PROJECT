@@ -12,19 +12,23 @@ private:
 
 	PauseMenu* pmenu;
 
-	TileMap map;
+	sf::RectangleShape selectorRect;
+
+	TileMap* tileMap;
 
 	std::map<std::string, gui::Button*> buttonContainer;
 
 	void initVariables();
 	void initBackgrounds();
 	void initKeybinds();
+	void initGui();
 	void initFonts();
 	void initButtons();
 	void initPauseMenu();
+	void initTileMap();
 
 public:
-	EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer);
+	EditorState(StateData* state_data);
 	virtual ~EditorState();
 
 
@@ -32,9 +36,11 @@ public:
 	void updateButtons();
 	void updateInput(const float& dt);
 	void updatePauseMenuButtons();
+	void updateGui();
 	void update(const float& dt);
 
 	void renderButtons(sf::RenderTarget& target);
+	void renderGui(sf::RenderTarget& target);
 	void render(sf::RenderTarget* target = nullptr);
 };
 

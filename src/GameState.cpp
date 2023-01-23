@@ -3,14 +3,15 @@
 #include"States/GameState.h"
 
 
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer) 
-	: State(window, supportedKeys, statesContainer)
+GameState::GameState(StateData* state_data)
+	: State(state_data)
 {
 	this->initKeybinds();
 	this->initFonts();
 	this->initTextures();
 	this->initPauseMenu();
 	this->initPlayer();
+	this->initTileMap();
 	
 	std::cout << "New gamestate" << "\n";
 }
@@ -19,6 +20,7 @@ GameState::~GameState()
 {
 	delete this->pmenu;
 	delete this->player;
+	delete this->tileMap;
 }
 
 void GameState::initTextures()
@@ -64,6 +66,11 @@ void GameState::initPauseMenu()
 void GameState::initPlayer()
 {
 	this->player = new Player(0, 0, this->textureMap["PLAYER_SHEET"]);
+}
+
+void GameState::initTileMap()
+{
+	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10);
 }
 
 void GameState::updateInput(const float& dt)

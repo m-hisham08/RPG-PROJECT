@@ -2,15 +2,17 @@
 #include "States/EditorState.h"
 
 
-EditorState::EditorState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* statesContainer)
-	: State(window, supportedKeys, statesContainer)
+EditorState::EditorState(StateData* state_data)
+	: State(state_data)
 {
 	this->initVariables();
 	this->initBackgrounds();
 	this->initKeybinds();
 	this->initFonts();
 	this->initButtons();
+	this->initGui();
 	this->initPauseMenu();
+	this->initTileMap();
 }
 
 EditorState::~EditorState()
@@ -21,6 +23,8 @@ EditorState::~EditorState()
 	}
 
 	delete this->pmenu;
+
+	delete this->tileMap;
 }
 
 void EditorState::initVariables()
@@ -50,6 +54,15 @@ void EditorState::initKeybinds()
 
 }
 
+void EditorState::initGui()
+{
+	this->selectorRect.setSize(sf::Vector2f(this->stateData->gridSize, this->stateData->gridSize));
+	this->selectorRect.setFillColor(sf::Color::Transparent);
+	this->selectorRect.setOutlineThickness(1.f);
+	this->selectorRect.setOutlineColor(sf::Color::Green);
+
+}
+
 void EditorState::initFonts()
 {
 	if (!this->font.loadFromFile("res/Fonts/Dosis-Light.ttf"))
@@ -63,6 +76,11 @@ void EditorState::initPauseMenu()
 	this->pmenu = new PauseMenu(*this->window, this->font);
 
 	this->pmenu->addButton("QUIT", 500.f, "Quit");
+}
+
+void EditorState::initTileMap()
+{
+	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10);
 }
 
 void EditorState::initButtons()
@@ -93,6 +111,11 @@ void EditorState::updatePauseMenuButtons()
 		this->endState();
 }
 
+void EditorState::updateGui()
+{
+	this->selectorRect.setPosition(this->mousePosView);
+}
+
 
 void EditorState::update(const float& dt)
 {
@@ -103,6 +126,7 @@ void EditorState::update(const float& dt)
 	if (!this->paused)
 	{
 		this->updateButtons();
+		this->updateGui();
 	}
 	else
 	{
@@ -119,6 +143,11 @@ void EditorState::renderButtons(sf::RenderTarget& target)
 	}
 }
 
+void EditorState::renderGui(sf::RenderTarget& target)
+{
+	target.draw(this->selectorRect);
+}
+
 void EditorState::render(sf::RenderTarget* target)
 {
 	if (!target)
@@ -127,7 +156,8 @@ void EditorState::render(sf::RenderTarget* target)
 	}
 
 	this->renderButtons(*target);
-	this->map.render(*target);
+	this->renderGui(*target);
+	this->tileMap->render(*target);
 
 	if (this->paused) {
 
