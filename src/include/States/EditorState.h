@@ -9,6 +9,7 @@ class EditorState :
 {
 private:
 	sf::Font font;
+	sf::Text cursorText;
 
 	PauseMenu* pmenu;
 
@@ -24,6 +25,7 @@ private:
 	void initKeybinds();
 	void initGui();
 	void initFonts();
+	void initText();
 	void initButtons();
 	void initPauseMenu();
 	void initTileMap();
@@ -31,8 +33,6 @@ private:
 public:
 	EditorState(StateData* state_data);
 	virtual ~EditorState();
-
-
 
 	void updateButtons();
 	void updateInput(const float& dt);
