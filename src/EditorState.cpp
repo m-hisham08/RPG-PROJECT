@@ -29,7 +29,7 @@ EditorState::~EditorState()
 
 void EditorState::initVariables()
 {
-
+	this->textureRect = sf::IntRect(0, 0, static_cast<int>(this->stateData->gridSize), static_cast<int>(this->stateData->gridSize));
 }
 
 void EditorState::initBackgrounds()
@@ -105,6 +105,24 @@ void EditorState::updateInput(const float& dt)
 	}
 }
 
+void EditorState::updateEditorInput(const float& dt)
+{
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->getKeytime())
+
+		this->tileMap->addTile(this->mousePosGrid.x, this->mousePosGrid.y, 0, this->textureRect);
+
+	else if(sf::Mouse::isButtonPressed(sf::Mouse::Right) && this->getKeytime())
+
+		this->tileMap->removeTile(this->mousePosGrid.x, this->mousePosGrid.y, 0);
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && this->getKeytime())
+
+		if (this->textureRect.left < 800)
+
+			this->textureRect.left += 100;
+}
+
 void EditorState::updatePauseMenuButtons()
 {
 	if (this->pmenu->isButtonPressed("QUIT"))
@@ -127,6 +145,7 @@ void EditorState::update(const float& dt)
 	{
 		this->updateButtons();
 		this->updateGui();
+		this->updateEditorInput(dt);
 	}
 	else
 	{
@@ -171,7 +190,7 @@ void EditorState::render(sf::RenderTarget* target)
 	mouseText.setCharacterSize(12);
 	mouseText.setPosition(this->mousePosView.x, this->mousePosView.y - 50);
 	std::stringstream ss;
-	ss << this->mousePosView.x << " X " << this->mousePosView.y;
+	ss << this->mousePosView.x << " X " << this->mousePosView.y << "\n" << this->textureRect.left << " " << this->textureRect.top;
 	mouseText.setString(ss.str());
 	target->draw(mouseText);
 

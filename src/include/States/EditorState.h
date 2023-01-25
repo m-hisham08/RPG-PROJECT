@@ -13,6 +13,7 @@ private:
 	PauseMenu* pmenu;
 
 	sf::RectangleShape selectorRect;
+	sf::IntRect textureRect;
 
 	TileMap* tileMap;
 
@@ -35,6 +36,7 @@ public:
 
 	void updateButtons();
 	void updateInput(const float& dt);
+	void updateEditorInput(const float& dt);
 	void updatePauseMenuButtons();
 	void updateGui();
 	void update(const float& dt);
