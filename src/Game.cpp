@@ -32,7 +32,7 @@ void Game::initVariables()
 {
 	this->window = NULL;
 	this->deltaTime = 0.f;
-	this->gridSize = 50.f;
+	this->gridSize = 100.f;
 }
 
 void Game::initGraphicsSettings()

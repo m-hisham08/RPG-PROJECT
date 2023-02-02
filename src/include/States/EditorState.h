@@ -17,6 +17,7 @@ private:
 	sf::IntRect textureRect;
 
 	TileMap* tileMap;
+	gui::TextureSelector* textureSelector;
 
 	std::map<std::string, gui::Button*> buttonContainer;
 

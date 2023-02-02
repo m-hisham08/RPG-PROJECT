@@ -86,5 +86,32 @@ namespace gui {
 		void render(sf::RenderTarget& target);
 
 	};
+
+	class TextureSelector
+	{
+	private:
+		sf::RectangleShape bounds;
+		sf::Sprite sheet;
+
+		bool active;
+		float gridSize;
+		 
+		sf::Vector2u mousePosGrid;
+		sf::RectangleShape selector;
+		sf::IntRect textureRect;
+
+
+	public:
+		TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* texture_sheet);
+		~TextureSelector();
+
+		//Accessors
+		const bool& getActive() const;
+		const sf::IntRect& getTextureRect() const;
+		
+		void update(const sf::Vector2i mousePosWindow);
+		void render(sf::RenderTarget& target);
+	
+	};
 }
 
