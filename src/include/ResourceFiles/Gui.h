@@ -93,8 +93,13 @@ namespace gui {
 		sf::RectangleShape bounds;
 		sf::Sprite sheet;
 
+		float keytime;
+		float keytimeMax;
 		bool active;
+		bool hidden;
 		float gridSize;
+
+		gui::Button* hide_btn;
 		 
 		sf::Vector2u mousePosGrid;
 		sf::RectangleShape selector;
@@ -102,14 +107,16 @@ namespace gui {
 
 
 	public:
-		TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* texture_sheet);
+		TextureSelector(float x, float y, float width, float height, float gridSize, const sf::Texture* texture_sheet, sf::Font& font, std::string text);
 		~TextureSelector();
 
 		//Accessors
 		const bool& getActive() const;
 		const sf::IntRect& getTextureRect() const;
-		
-		void update(const sf::Vector2i mousePosWindow);
+		const bool getKeytime();
+
+		void updateKeytime(const float& dt);
+		void update(const sf::Vector2i mousePosWindow, const float& dt);
 		void render(sf::RenderTarget& target);
 	
 	};
