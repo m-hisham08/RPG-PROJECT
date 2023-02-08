@@ -242,7 +242,7 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 	this->active = false;
 	this->hidden = false;
 	this->gridSize = gridSize;
-	float offset = 60.f;
+	float offset = 100.f;
 
 	this->bounds.setSize(sf::Vector2f(width, height));
 	this->bounds.setPosition(x + offset, y);
@@ -275,9 +275,9 @@ gui::TextureSelector::TextureSelector(float x, float y, float width, float heigh
 
 	this->hide_btn = new gui::Button(
 		x, y, 50.f, 50.f,
-		&font, text, 30,
-		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
+		&font, text, 16,
+		sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 50),
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50)
 	);
 }
 

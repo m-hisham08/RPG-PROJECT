@@ -4,12 +4,13 @@
 
 
 
-TileMap::TileMap(float gridSize, unsigned width, unsigned height)
+TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string texture_file)
 {
 	this->gridSizeF = gridSize;
 	this->gridSizeU = static_cast<unsigned>(this->gridSizeF);
 	this->maxSize.x = width;
 	this->maxSize.y = height;
+	this->textureFile = texture_file;
 	this->layers = 1;
 
 	this->map.resize(this->maxSize.x, std::vector < std::vector < Tile* > >());
@@ -26,7 +27,7 @@ TileMap::TileMap(float gridSize, unsigned width, unsigned height)
 			}
 		}
 	}
-	if (!this->tileSheet.loadFromFile("res/Tiles/tilesheet1.png"))
+	if (!this->tileSheet.loadFromFile(texture_file))
 		std::cout << "TILEMAP.CPP :: FAILED TO LOAD THE TEXTURE 'grass1.png' \n";
 }
 
@@ -70,6 +71,58 @@ void TileMap::removeTile(const unsigned x, const unsigned y, const unsigned z)
 			this->map[x][y][z] = NULL;
 		}
 	}
+}
+
+void TileMap::loadFromFile(const std::string file_name)
+{
+
+}
+
+void TileMap::saveToFile(const std::string file_name)
+{
+	std::ofstream out_file;
+
+	out_file.open(file_name);
+
+	if (out_file.is_open())
+	{
+		/*
+			SAVES THE ENTIRE TILEMAP TO A TEXT FILE
+			DATA THAT WILL BE SAVED:
+
+			** BASIC INFO **
+			Size x, y
+			gridSize
+			layers
+			texture_file_path
+
+			** TILE INFO **
+			GridSize x y, TextureRect x y, type
+		*/
+
+		out_file << this->maxSize.x << " " << this->maxSize.y << "\n"
+			<< this->gridSizeU << "\n"
+			<< this->layers << "\n"
+			<< this->textureFile << "\n";
+
+		for (size_t x = 0; x < this->maxSize.x; x++)
+		{
+			for (size_t y = 0; y < this->maxSize.y; y++)
+			{
+				for (size_t z = 0; z < this->layers; z++)
+				{
+					//out_file << this->map[x][y][z];
+				}
+			}
+		}
+
+	}
+	else
+	{
+		std::cout << "ERROR :: TILEMAP :: COULD NOT SAVE THE TILMAP TO FILE - " << file_name << std::endl;
+	}
+
+	out_file.close();
 }
 
 void TileMap::update()

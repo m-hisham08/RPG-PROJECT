@@ -75,7 +75,7 @@ void EditorState::initGui()
 
 	this->textureSelector = new gui::TextureSelector(20.f, 20.f, 700.f, 300.f,
 		this->stateData->gridSize, this->tileMap->getTileSheet(),
-		this->font, "Hide/Show"
+		this->font, "Tiles"
 	);
 }
 
@@ -98,12 +98,14 @@ void EditorState::initPauseMenu()
 {
 	this->pmenu = new PauseMenu(*this->window, this->font);
 
+	this->pmenu->addButton("SAVE", 300.f, "Save");
+
 	this->pmenu->addButton("QUIT", 500.f, "Quit");
 }
 
 void EditorState::initTileMap()
 {
-	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10);
+	this->tileMap = new TileMap(this->stateData->gridSize, 10, 10, "res/Tiles/tilesheet1.png");
 }
 
 void EditorState::initButtons()
@@ -161,6 +163,9 @@ void EditorState::updatePauseMenuButtons()
 {
 	if (this->pmenu->isButtonPressed("QUIT"))
 		this->endState();
+
+	if (this->pmenu->isButtonPressed("SAVE"))
+		this->tileMap->saveToFile("text.slmp");
 }
 
 void EditorState::updateGui(const float& dt)
