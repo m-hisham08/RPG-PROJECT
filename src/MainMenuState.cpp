@@ -70,28 +70,28 @@ void MainMenuState::initFonts()
 void MainMenuState::initButtons()
 {
 	this->buttonContainer["GAME_STATE"] = new gui::Button(
-		160.f, 340.f, 250.f, 50.f,
+		160.f, 340.f, 250.f, 65.f,
 		&this->font, "New Game", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	this->buttonContainer["EDITOR_STATE"] = new gui::Button(
-		160.f, 440.f, 250.f, 50.f,
+		160.f, 440.f, 250.f, 65.f,
 		&this->font, "Editor", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	this->buttonContainer["SETTINGS_STATE"] = new gui::Button(
-		160.f, 540.f, 250.f, 50.f,
+		160.f, 540.f, 250.f, 65.f,
 		&this->font, "Settings", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 	
 	this->buttonContainer["EXIT_STATE"] = new gui::Button(
-		160.f, 640.f, 250.f, 50.f,
+		160.f, 640.f, 250.f, 65.f,
 		&this->font, "Quit", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)

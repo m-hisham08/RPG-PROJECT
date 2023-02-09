@@ -25,7 +25,7 @@ gui::Button::Button(
 	this->text.setCharacterSize(character_size);
 	this->text.setPosition(
 		this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2.f - this->text.getGlobalBounds().width / 2.f,
-		this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2.f - this->text.getGlobalBounds().height / 2.f
+		this->shape.getPosition().y
 	);
 
 	this->buttonState = BTN_IDLE;

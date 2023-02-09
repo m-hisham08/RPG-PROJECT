@@ -97,7 +97,7 @@ void TileMap::saveToFile(const std::string file_name)
 			texture_file_path
 
 			** TILE INFO **
-			GridSize x y, TextureRect x y, type
+			GridSize x y, TextureRect x y, collision, type
 		*/
 
 		out_file << this->maxSize.x << " " << this->maxSize.y << "\n"
@@ -111,7 +111,8 @@ void TileMap::saveToFile(const std::string file_name)
 			{
 				for (size_t z = 0; z < this->layers; z++)
 				{
-					//out_file << this->map[x][y][z];
+					if(this->map[x][y][z])
+						out_file << this->map[x][y][z]->getAsString() << " ";
 				}
 			}
 		}

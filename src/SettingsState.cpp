@@ -57,14 +57,14 @@ void SettingsState::initGui()
 	//Buttons
 	this->buttonContainer["BACK"] = new gui::Button(
 		800.f, 595.f,
-		250.f, 50.f,
+		250.f, 65.f,
 		&this->font, "Back", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
 
 	this->buttonContainer["APPLY"] = new gui::Button(
 		1000.f, 600.f,
-		250.f, 50.f,
+		250.f, 65.f,
 		&this->font, "Apply", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0));
