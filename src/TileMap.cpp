@@ -4,6 +4,21 @@
 
 
 
+void TileMap::clear()
+{
+	for (size_t x = 0; x < this->maxSize.x; x++)
+	{
+		for (size_t y = 0; y < this->maxSize.y; y++)
+		{
+			for (size_t z = 0; z < this->layers; z++)
+			{
+				delete this->map[x][y][z];
+				this->map[x][y][z] = NULL;
+			}
+		}
+	}
+}
+
 TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string texture_file)
 {
 	this->gridSizeF = gridSize;
@@ -33,16 +48,7 @@ TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string te
 
 TileMap::~TileMap()
 {
-	for (size_t x = 0; x < this->maxSize.x; x++)
-	{
-		for (size_t y = 0; y < this->maxSize.y; y++)
-		{
-			for (size_t z = 0; z < this->layers; z++)
-			{
-				delete this->map[x][y][z];
-			}
-		}
-	}
+	this->clear();
 }
 
 const sf::Texture* TileMap::getTileSheet() const
@@ -75,6 +81,66 @@ void TileMap::removeTile(const unsigned x, const unsigned y, const unsigned z)
 
 void TileMap::loadFromFile(const std::string file_name)
 {
+	std::ifstream in_file;
+
+	in_file.open(file_name);
+
+	if (in_file.is_open())
+	{
+		sf::Vector2u size;
+		unsigned gridSize = 0;
+		unsigned layers = 0;
+		std::string texture_file = "";
+		unsigned x = 0;
+		unsigned y = 0;
+		unsigned z = 0;
+		unsigned trX = 0;
+		unsigned trY = 0;
+		bool collision = false;
+		short type = 0;
+
+		//Basics
+		in_file >> size.x >> size.y >> gridSize >> layers >> texture_file;
+
+		//Tiles
+		this->gridSizeF = static_cast<float>(gridSize);
+		this->gridSizeU = gridSize;
+		this->maxSize.x = size.x;
+		this->maxSize.y = size.y;
+		this->textureFile = texture_file;
+		this->layers = layers;
+
+		this->clear();
+
+		this->map.resize(this->maxSize.x, std::vector < std::vector < Tile* > >());
+		for (size_t x = 0; x < this->maxSize.x; x++)
+		{
+
+			for (size_t y = 0; y < this->maxSize.y; y++)
+			{
+				this->map[x].resize(this->maxSize.y, std::vector < Tile* >());
+
+				for (size_t z = 0; z < this->layers; z++)
+				{
+					this->map[x][y].resize(this->layers, NULL);
+				}
+			}
+		}
+		if (!this->tileSheet.loadFromFile(texture_file))
+			std::cout << "TILEMAP.CPP :: FAILED TO LOAD THE TEXTURE 'grass1.png' \n";
+
+		//Load all tiles
+		while (in_file >> x >> y >> z >> trX >> trY >> collision >> type)
+		{
+			//this->map[x][y][z] = new Tile();
+		}
+	}
+	else
+	{
+		std::cout << "ERROR :: TILEMAP :: COULD NOT LOAD THE TILMAP FROM FILE - " << file_name << std::endl;
+	}
+
+	in_file.close();
 
 }
 
@@ -111,8 +177,8 @@ void TileMap::saveToFile(const std::string file_name)
 			{
 				for (size_t z = 0; z < this->layers; z++)
 				{
-					if(this->map[x][y][z])
-						out_file << this->map[x][y][z]->getAsString() << " ";
+					if (this->map[x][y][z])
+						out_file << x << " " << y << " " << z << " " << this->map[x][y][z]->getAsString() << " ";
 				}
 			}
 		}

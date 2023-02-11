@@ -13,6 +13,8 @@ private:
 	unsigned gridSizeU;
 	unsigned layers;
 	std::string textureFile;
+
+	void clear();
 public:
 
 	TileMap(float gridSize, unsigned width, unsigned height, std::string texture_file);
