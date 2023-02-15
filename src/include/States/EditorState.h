@@ -11,6 +11,11 @@ private:
 	sf::Font font;
 	sf::Text cursorText;
 
+	sf::View view;
+
+	bool collision;
+	short type;
+
 	PauseMenu* pmenu;
 
 	sf::RectangleShape selectorRect;
@@ -27,6 +32,7 @@ private:
 	void initBackgrounds();
 	void initKeybinds();
 	void initGui();
+	void initView();
 	void initFonts();
 	void initText();
 	void initButtons();
