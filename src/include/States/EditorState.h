@@ -14,6 +14,7 @@ private:
 	sf::View view;
 
 	bool collision;
+	float cameraSpeed;
 	short type;
 
 	PauseMenu* pmenu;

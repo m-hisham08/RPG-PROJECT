@@ -70,10 +70,10 @@ void PauseMenu::addButton(const std::string key, float y, const std::string text
 	);
 }
 
-void PauseMenu::update(const sf::Vector2f& mousePos)
+void PauseMenu::update(const sf::Vector2i& mousePosWindow)
 {
 	for (auto& i : this->buttonContainer) {
-		i.second->update(mousePos);
+		i.second->update(mousePosWindow);
 	}
 }
 

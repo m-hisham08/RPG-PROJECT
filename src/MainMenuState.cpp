@@ -101,7 +101,7 @@ void MainMenuState::initButtons()
 void MainMenuState::updateButtons()
 {
 	for (auto& it : this->buttonContainer) {
-		it.second->update(this->mousePosView);
+		it.second->update(this->mousePosWindow);
 	}
 
 	

@@ -25,6 +25,8 @@ public:
 							float offset_x, float offset_y,
 							float width, float height);
 
+
+	virtual const sf::Vector2f& getPosition() const;
 	virtual void setPosition(const float x, const float y);
 	virtual void move(const float dir_x, const float dir_y, const float& dt);
 	virtual void update(const float& dt);
