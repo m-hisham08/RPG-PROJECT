@@ -46,6 +46,11 @@ TileMap::TileMap(float gridSize, unsigned width, unsigned height, std::string te
 	}
 	if (!this->tileSheet.loadFromFile(texture_file))
 		std::cout << "TILEMAP.CPP :: FAILED TO LOAD THE TEXTURE 'grass1.png' \n";
+
+	this->collisionBox.setSize(sf::Vector2f(gridSize, gridSize));
+	this->collisionBox.setFillColor(sf::Color(255, 0, 0, 50));
+	this->collisionBox.setOutlineColor(sf::Color::Red);
+	this->collisionBox.setOutlineThickness(1.f);
 }
 
 TileMap::~TileMap()
@@ -195,11 +200,16 @@ void TileMap::saveToFile(const std::string file_name)
 	out_file.close();
 }
 
+void TileMap::updateCollision(Entity* entity)
+{
+
+}
+
 void TileMap::update()
 {
 }
 
-void TileMap::render(sf::RenderTarget& target)
+void TileMap::render(sf::RenderTarget& target, Entity* entity)
 {
 	for (auto& x : this->map)
 	{
@@ -207,9 +217,16 @@ void TileMap::render(sf::RenderTarget& target)
 		{
 			for (auto* z : y)
 			{
-				if(z != NULL)
-					z->render(target); 
+				if (z != NULL)
+				{
+					z->render(target);
 
+					if (z->getCollision())
+					{
+						this->collisionBox.setPosition(z->getPosition());
+						target.draw(this->collisionBox);
+					}
+				}
 			}
 
 		}

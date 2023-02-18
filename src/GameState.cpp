@@ -6,6 +6,7 @@
 GameState::GameState(StateData* state_data)
 	: State(state_data)
 {
+	this->initDeferredRender();
 	this->initView();
 	this->initKeybinds();
 	this->initFonts();
@@ -22,6 +23,20 @@ GameState::~GameState()
 	delete this->pmenu;
 	delete this->player;
 	delete this->tileMap;
+}
+
+void GameState::initDeferredRender()
+{
+	this->renderTexture.create(this->stateData->gfxSettings->resolution.width, this->stateData->gfxSettings->resolution.height);
+	this->renderSprite.setTexture(this->renderTexture.getTexture());
+	this->renderSprite.setTextureRect(
+		sf::IntRect(
+			0,
+			0,
+			this->stateData->gfxSettings->resolution.width,
+			this->stateData->gfxSettings->resolution.height
+		)
+	);
 }
 
 void GameState::initView()
@@ -151,15 +166,25 @@ void GameState::render(sf::RenderTarget* target)
 		target = this->window;
 	}
 
-	target->setView(this->view);
-	this->tileMap->render(*target);
+	this->renderTexture.clear();
+
+	this->renderTexture.setView(this->view);
+	this->tileMap->render(this->renderTexture);
 
 
-	this->player->render(*target);
+	this->player->render(this->renderTexture);
 
 	if (this->paused) {
-		target->setView(this->window->getDefaultView());
-		this->pmenu->render(*target);
+		this->renderTexture.setView(this->renderTexture.getDefaultView());
+		this->pmenu->render(this->renderTexture);
 	}
+
+	//final RENDER!
+	this->renderTexture.display();
+	this->renderSprite.setTexture(this->renderTexture.getTexture());
+	target->draw(this->renderSprite);
+
+
+
 }
 

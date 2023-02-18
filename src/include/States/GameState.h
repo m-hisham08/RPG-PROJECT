@@ -19,6 +19,7 @@ private:
 
 	sf::Font font;
 
+	void initDeferredRender();
 	void initView();
 	void initTextures();
 	void initFonts();
