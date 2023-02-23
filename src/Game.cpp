@@ -111,10 +111,12 @@ void Game::update()
 {
 	this->updateEvents();
 
-	if (!this->statesContainer.empty()) {
+	if (!this->statesContainer.empty() && this->window->hasFocus())
+	{
 		this->statesContainer.top()->update(this->deltaTime);
 
-		if (this->statesContainer.top()->getQuit()) {
+		if (this->statesContainer.top()->getQuit()) 
+		{	
 			this->statesContainer.top()->endState();
 			delete this->statesContainer.top();
 			this->statesContainer.pop();
