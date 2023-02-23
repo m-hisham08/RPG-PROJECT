@@ -4,6 +4,8 @@
 #include"GUI/PauseMenu.h"
 #include"Map/TileMap.h"
 
+class TileMap;
+
 class EditorState :
     public State
 {

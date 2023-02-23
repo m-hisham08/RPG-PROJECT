@@ -1,13 +1,14 @@
 #pragma once
+#include"Game.h"
 #include"Tile/Tile.h"
-#include "Game.h"
 #include"Entities/Entity.h"
 
 class TileMap
 {
 private:
 	std::vector < std::vector < std::vector < Tile* > > > map;
-	sf::Vector2u maxSize;
+	sf::Vector2u maxSizeWorldGrid;
+	sf::Vector2f maxSizeWorldF;
 
 	sf::Texture tileSheet;
 

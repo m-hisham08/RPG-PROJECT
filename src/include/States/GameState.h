@@ -5,6 +5,8 @@
 #include"GUI/PauseMenu.h"
 #include"Map/TileMap.h"
 
+class TileMap;
+
 class GameState :
 	public State {
 private:
@@ -36,6 +38,7 @@ public:
 	void updateInput(const float& dt);
 	void updatePlayerInput(const float& dt);
 	void updatePauseMenuButtons();
+	void updateTileMap(const float& dt);
 	void update(const float& dt);
 	void render(sf::RenderTarget* target = nullptr);
 
