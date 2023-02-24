@@ -11,6 +11,7 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite,
 	this->nextPosition.top = 0.f;
 	this->nextPosition.height = height;
 	this->nextPosition.width = width;
+	
 
 	this->hitbox.setPosition(this->sprite.getPosition().x + offset_x, this->sprite.getPosition().y + offset_y);
 	this->hitbox.setSize(sf::Vector2f(width, height));

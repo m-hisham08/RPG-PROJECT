@@ -19,6 +19,12 @@ private:
 	unsigned layers;
 	std::string textureFile;
 
+	int fromX;
+	int toX;
+	int fromY;
+	int toY;
+	int layer;
+
 	void clear();
 public:
 
